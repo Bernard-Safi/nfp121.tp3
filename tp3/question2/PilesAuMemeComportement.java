@@ -172,5 +172,19 @@ public class PilesAuMemeComportement extends junit.framework.TestCase {
         assertEquals(" différence  sur la taille() ?? ",p3.taille(), p4.taille());
 
     }
+    public void testEgalite()throws Exception{
+     p1.empiler(90);
+     p1.empiler(92);
+     p1.empiler(100);
+     p2.empiler(90);
+     p2.empiler(92);
+     p2.empiler(100);
+     p4.empiler(90);
+     p4.empiler(92);
+     p4.empiler(100);
+     assertTrue(p1.equals(p2));
+     assertTrue(p2.equals(p2));
+     assertTrue(p1.equals(p4));
+    }
 }
 

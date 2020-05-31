@@ -37,8 +37,11 @@ public class PileTest extends junit.framework.TestCase {
         assertEquals(true, p.estVide());
 
         p.empiler(new Integer(3));
+        
         assertEquals(" sommet ?? ", new Integer(3), p.sommet());
+        
         assertEquals(1, p.taille());
+   
         assertEquals(" depiler ?? ", new Integer(3), p.depiler());
         assertEquals(0, p.taille());
     }

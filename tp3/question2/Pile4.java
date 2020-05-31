@@ -49,9 +49,10 @@ public class Pile4 implements PileI, Cloneable {
 	 */
 	public Pile4(int taille) {
 		if (taille <= 0)
-			taille = CAPACITE_PAR_DEFAUT;
+                taille =PileI.CAPACITE_PAR_DEFAUT;
 		this.stk = null;
 		this.capacite = taille;
+		this.nombre=0;
 	}
 
 	public Pile4() {
@@ -61,20 +62,24 @@ public class Pile4 implements PileI, Cloneable {
 	public void empiler(Object o) throws PilePleineException {
 		if (estPleine())
 			throw new PilePleineException();
-		// à compléter
+		Maillon maillon=new Maillon(o,stk);
+		stk=maillon;
+		nombre++;
 	}
 
 	public Object depiler() throws PileVideException {
 		if (estVide())
 			throw new PileVideException();
-		// à compléter
-		return null;
+		Object object=stk.element();
+		stk=stk.suivant;
+		nombre--;
+		return object;
 	}
 
 	public Object sommet() throws PileVideException {
 		if (estVide())
 			throw new PileVideException();
-		return null; // à compléter
+		return stk.element();
 	}
 
 	/**
@@ -83,7 +88,7 @@ public class Pile4 implements PileI, Cloneable {
 	 * @return vrai si la pile est vide, faux autrement
 	 */
 	public boolean estVide() {
-		return false; // à compléter
+		return stk==null;
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class Pile4 implements PileI, Cloneable {
 	 * @return vrai si la pile est pleine, faux autrement
 	 */
 	public boolean estPleine() {
-		return false; // à compléter
+		return nombre==capacite;
 	}
 
 	/**
@@ -104,16 +109,28 @@ public class Pile4 implements PileI, Cloneable {
 	public String toString() {
 
 		String s = "[";
-		// à compléter
+		Maillon maillon=stk;
+		while(stk!=null){
+		   s+=stk.element().toString();
+		   stk=stk.suivant();
+		   if(stk!=null)
+		   s+=", ";
+		  }
+		  stk=maillon;
 		return s + "]";
 	}
 
 	public boolean equals(Object o) {
-		if (o instanceof Pile4) {
-			// à compléter
-			return false;
-		}
-		return false;
+	  if(o instanceof Pile4){
+           Pile4 p=(Pile4)o;
+           
+               return this.capacite() == p.capacite()
+                      &&this.taille()==p.taille()
+                      && this.hashCode() == p.hashCode();
+        }
+        else{
+            return false;
+        }
 	}
 
 	public int capacite() {

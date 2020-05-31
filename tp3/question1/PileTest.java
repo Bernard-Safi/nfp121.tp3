@@ -41,7 +41,40 @@ public class PileTest extends junit.framework.TestCase {
      * "Enregistrer une méthode de test".
      */
 
-    public void testEncourageant(){
-        assertTrue(true);
+    public void testPileVide(){
+        PolygoneRegulier p=new PolygoneRegulier(10,25);
+        PolygoneRegulier p1=new PolygoneRegulier(99,50);
+        Pile pile=new Pile(2);
+       assertTrue(pile.estVide());
+            
+             try{
+        pile.empiler(p);
+        pile.empiler(p1);
+        assertTrue(!pile.estVide());
+    
     }
-}
+    catch(PilePleineException ex){
+        
+    }
+    }
+   
+        public void testPilePleine(){
+        PolygoneRegulier p=new PolygoneRegulier(10,25);
+        PolygoneRegulier p1=new PolygoneRegulier(99,50);
+        Pile pile=new Pile(2);
+       assertTrue(!pile.estPleine());
+            
+             try{
+        pile.empiler(p);
+        pile.empiler(p1);
+        assertTrue(pile.estPleine());
+    
+    }
+    catch(PilePleineException ex){
+        
+    }
+    }
+        
+        
+    }
+
